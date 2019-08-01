@@ -2,6 +2,7 @@
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -32,11 +33,15 @@ public class Login {
 
 	//@When("User should enter the Username and Password.")
 	//public void user_should_enter_the_Username_and_Password() {
-	@When("User should enter the Username and Password")
+	//@When("User should enter the Username and Password")
+	//public void user_should_enter_the_Username_and_Password(DataTable data) {
+	@When("User should enter the Username and Password.")
 	public void user_should_enter_the_Username_and_Password(DataTable data) {
-		List <String> a = data.asList(String.class);
-		driver.findElement(By.id("email")).sendKeys(a.get(2));
-		driver.findElement(By.id("pass")).sendKeys(a.get(3));
+	    
+		
+	Map <String,String> a = data.asMap(String.class,String.class);
+		driver.findElement(By.id("email")).sendKeys(a.get("Mail"));
+		driver.findElement(By.id("pass")).sendKeys(a.get("Password"));
 	
 	}
 		
