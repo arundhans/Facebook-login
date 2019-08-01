@@ -1,4 +1,8 @@
 
+
+
+import java.util.List;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.cucumber.datatable.DataTable;
 
 
 
@@ -25,13 +30,17 @@ public class Login {
 		driver.get("https://www.facebook.com/");
 	}
 
-	@When("User should enter the Username and Password.")
-	public void user_should_enter_the_Username_and_Password() {
-		driver.findElement(By.id("email")).sendKeys("arundhans7@gmaail.com");
-		driver.findElement(By.id("pass")).sendKeys("Anitharaj@15");
-		
+	//@When("User should enter the Username and Password.")
+	//public void user_should_enter_the_Username_and_Password() {
+	@When("User should enter the Username and Password")
+	public void user_should_enter_the_Username_and_Password(DataTable data) {
+		List <String> a = data.asList(String.class);
+		driver.findElement(By.id("email")).sendKeys(a.get(2));
+		driver.findElement(By.id("pass")).sendKeys(a.get(3));
+	
 	}
-
+		
+	
 	@When("User should click on the Login button.")
 	public void user_should_click_on_the_Login_button() {
 		driver.findElement(By.id("loginbutton")).click();
